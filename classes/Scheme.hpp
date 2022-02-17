@@ -1,43 +1,48 @@
+#pragma once
 #include <valarray>
+//#include "NumericalSimulation.hpp"
 
-
-class NumericalSimulation {
-public:
-	/**
-	 * Fonction venant d'une équation de la forme dy/dt = f(y), où y est un vecteur
-	 * 
-	 * f(y) peut représenter une force, par exemple. Dans ce cas, y contient la vitesse et la position.
-	 * 
-	 * INPUT : 
-	 * 		 - y : vecteur dans l'espace de phase
-	 * 		 - t : temps auquel faire l'évaluation
-	 * 
-	 * OUTPUT : 
-	 * 		- Le résulat de la fonction. Le vecteur retourné doit avoir la même taille que y !
-	 */
-	virtual std::valarray<double> f(std::valarray<double> const& y, double t) = 0;
-};
-
+class NumericalSimulation;
 
 class SchemeModel {
+private:
+	//Order of convergency
+	const unsigned int order;
 public:
-	virtual void scheme(std::valarray<double>& y,double t,double dt,NumericalSimulation* simulation) = 0;
+	SchemeModel(unsigned int order) : order(order) {}
+	virtual void scheme(std::valarray<long double>& y,double t,double dt,NumericalSimulation* simulation) = 0;
+
+	virtual ~SchemeModel() {};
+
+	unsigned int getOrder() const {return order;};
+
 };
 
-class RK4 : SchemeModel {
+/**
+ * Algorithm of Runge-Kutta of order 4 - implementation
+ */
+class RK4 : public SchemeModel {
+protected:
+
+
 public:
-	void scheme(std::valarray<double>& y,double t,double dt,NumericalSimulation* simulation) override {
+	RK4() : SchemeModel(4) {}
+	void scheme(std::valarray<long double>& y,double t,double dt,NumericalSimulation* simulation) override;
 
-		std::valarray<double> k1 = dt * simulation->f(y,t);
-		//print(k1);
-
-		std::valarray<double> k2 = dt * simulation->f(y + 0.5 * k1, t + 0.5 * dt);
-
-		std::valarray<double> k3 = dt * simulation->f(y + 0.5 * k2, t + 0.5 * dt);
-
-		std::valarray<double> k4 = dt * simulation->f(y + k3, t + dt);
-
-		y += 1.0/6.0 * (k1 + 2 * k2 + 2 * k3 + k4);
-	}
-
+};
+/**
+ * Algorithm of Runge-Kutta of order 2 - implementation
+ */
+class RK2 : public SchemeModel {
+public:
+	RK2() : SchemeModel(2) {}
+	void scheme(std::valarray<long double>& y,double t,double dt,NumericalSimulation* simulation) override;
+};
+/**
+ * Algorithm explicit of Euler - implementation
+ */
+class EulerExpl : public SchemeModel {
+public:
+	EulerExpl() : SchemeModel(1) {}
+	void scheme(std::valarray<long double>& y,double t, double dt, NumericalSimulation* simulation) override;
 };

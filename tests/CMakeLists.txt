@@ -1,12 +1,15 @@
 cmake_minimum_required(VERSION 3.16.3)
 project(ComputingPhysicsTests)
 
+set(CMAKE_CXX_STANDARD 17)
+
 
 file(GLOB SRC_FILES
-	"*.cpp"
+	"*.cpp" "../classes/*.cpp"
 )
 set(INC_TESTS_FILES #set a variable
-	"../classes/*.cpp"
+	../
+	../classes/
 )
 
 include_directories(
