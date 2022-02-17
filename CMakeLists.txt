@@ -10,3 +10,7 @@ file(GLOB SRC_FILES
 if (BUILD_TESTS)
 	add_subdirectory(tests)
 endif()
+
+add_library(mylib SHARED
+    classes/*.cpp
+)
