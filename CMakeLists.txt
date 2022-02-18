@@ -1,3 +1,4 @@
+#Réalisé selon : https://stackoverflow.com/questions/17511496/how-to-create-a-shared-library-with-cmake
 cmake_minimum_required(VERSION 3.16.3)
 project(ComputingPhysics VERSION 1.0 DESCRIPTION "ComputingPhysics is a project which aimed to integrate differential equations")
 
@@ -30,7 +31,7 @@ include_directories(
 	classes/
 )
 
-add_library(${PROJECT_NAME} SHARED ${SOURCES})
+add_library(${PROJECT_NAME} STATIC ${SOURCES})
 
 install(TARGETS ${PROJECT_NAME} DESTINATION lib/${PROJECT_NAME})
 
