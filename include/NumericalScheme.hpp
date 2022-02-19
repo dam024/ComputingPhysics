@@ -56,6 +56,6 @@ public:
 	~NumericalScheme() {
 		delete scheme;
 	}
-	void step(std::valarray<long double>& y, double& t, double& dt, NumericalSimulation*);
+	void step(std::valarray<long double>& y, double& t, double& dt, NumericalSimulation*) const;
 
 };

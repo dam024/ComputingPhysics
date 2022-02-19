@@ -5,16 +5,22 @@ set(CMAKE_CXX_STANDARD 17)
 
 
 file(GLOB SRC_FILES
-	"*.cpp" "../classes/*.cpp"
+	"../src/*.cpp"
+	"functions/*.cpp"
 )
 set(INC_TESTS_FILES #set a variable
-	../
-	../classes/
+	../include
+	../private
+	functions
 )
 
 include_directories(
 	${INC_TESTS_FILES}
 )
 add_executable(ComputingPhysicsTests
-	${SRC_FILES}
+	${SRC_FILES} "main.cpp"
+)
+
+add_executable(TestExemple
+	${SRC_FILES} "testExemple.cpp"
 )

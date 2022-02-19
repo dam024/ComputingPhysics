@@ -12,7 +12,7 @@ double norm(std::valarray<long double> v) {
 	return sqrt(ret);
 }
 
-void NumericalScheme::step(std::valarray<long double>& y, double& t, double& dt, NumericalSimulation* numericalScheme) {
+void NumericalScheme::step(std::valarray<long double>& y, double& t, double& dt, NumericalSimulation* numericalScheme) const {
 
 
 
