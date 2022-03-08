@@ -1,3 +1,4 @@
+set(CMAKE_CXX_STANDARD 17)
 
 file(GLOB SRC_FILES
 	"src/*.cpp"	#Source files

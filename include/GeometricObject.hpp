@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include "SpaceUility.hpp"
+#include "SpaceUilities.hpp"
 
 
 class GeometricObject2D {

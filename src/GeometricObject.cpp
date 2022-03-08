@@ -1,5 +1,5 @@
 #include "GeometricObject.hpp"
-#include "SpaceUility.hpp"
+#include "SpaceUilities.hpp"
 #include <cmath>
 
 bool HalfCircle::isPointContained(unsigned int i, unsigned int j) const {
