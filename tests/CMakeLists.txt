@@ -24,3 +24,7 @@ add_executable(ComputingPhysicsTests
 add_executable(TestExemple
 	${SRC_FILES} "testExemple.cpp"
 )
+
+add_executable(TestUtils
+	${SRC_FILES} "testUtils.cpp"
+)
